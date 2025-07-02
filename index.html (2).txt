@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Онлайн Психолог - Професійні Консультації</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(1deg); }
+            66% { transform: translateY(10px) rotate(-1deg); }
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 2;
+            position: relative;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: slideInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: slideInUp 1s ease-out 0.3s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+            transition: all 0.3s ease;
+            animation: slideInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 107, 107, 0.4);
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .services {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .services h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .platforms {
+            background: white;
+        }
+
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .platform-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .platform-card:hover {
+            transform: scale(1.05);
+        }
+
+        .contact {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.9);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+        }
+
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            animation: floatAround 15s ease-in-out infinite;
+        }
+
+        .floating-circle:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-circle:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            top: 60%;
+            right: 15%;
+            animation-delay: 5s;
+        }
+
+        .floating-circle:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 10s;
+        }
+
+        @keyframes floatAround {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(30px, -30px) rotate(90deg); }
+            50% { transform: translate(-20px, 20px) rotate(180deg); }
+            75% { transform: translate(20px, 30px) rotate(270deg); }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section {
+                padding: 3rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements">
+        <div class="floating-circle"></div>
+        <div class="floating-circle"></div>
+        <div class="floating-circle"></div>
+    </div>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Онлайн Психолог</h1>
+            <p>Професійна психологічна допомога онлайн. Робота з дітьми, підтримка батьків, індивідуальні консультації через Zoom, Google Meet, Viber</p>
+            <a href="#contact" class="cta-button">Записатися на консультацію</a>
+        </div>
+    </section>
+
+    <section class="section services">
+        <h2>Мої Послуги</h2>
+        <div class="service-grid">
+            <div class="service-card">
+                <span class="service-icon">👶</span>
+                <h3>Дитяча Психологія</h3>
+                <p>Допомога дітям у подоланні страхів, тривожності, проблем з поведінкою та адаптацією. Індивідуальний підхід до кожної дитини.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">👨‍👩‍👧‍👦</span>
+                <h3>Підтримка Батьків</h3>
+                <p>Консультації для батьків з питань виховання, встановлення меж, покращення стосунків з дітьми та вирішення сімейних конфліктів.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">🎯</span>
+                <h3>Емоційна Регуляція</h3>
+                <p>Навчання дітей та батьків управляти емоціями, розвиток емоційного інтелекту та навичок спілкування.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">🌱</span>
+                <h3>Розвиток Дитини</h3>
+                <p>Підтримка природного розвитку дитини, корекція поведінкових особливостей та розкриття потенціалу малюка.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section about" style="background: white;">
+        <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; align-items: center;">
+            <div style="text-align: center;">
+                <div style="width: 250px; height: 250px; border-radius: 50%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); margin: 0 auto 2rem; display: flex; align-items: center; justify-content: center; font-size: 4rem; color: white;">👩‍⚕️</div>
+            </div>
+            <div>
+                <h2 style="color: #333; margin-bottom: 1.5rem;">Про мене</h2>
+                <h3 style="color: #667eea; font-size: 1.5rem; margin-bottom: 1rem;">Ольга, ваш онлайн психолог</h3>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 1rem;">
+                    Мене звати Ольга, мені 45 років. Маю 15 років досвіду в галузі психології та офіційний диплом психолога.
+                </p>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 1rem;">
+                    Спеціалізуюся на роботі з дітьми та наданні підтримки батькам. За роки практики допомогла сотням сімей знайти гармонію та взаєморозуміння.
+                </p>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: #555;">
+                    Вірю, що кожна дитина унікальна, і кожна родина заслуговує на підтримку та розуміння. Мій підхід базується на емпатії, професіоналізмі та індивідуальному підході до кожного клієнта.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section pricing" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; text-align: center;">
+        <h2 style="margin-bottom: 2rem;">Вартість Консультацій</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 800px; margin: 0 auto;">
+            <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 20px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2);">
+                <h3 style="font-size: 2rem; margin-bottom: 1rem;">🎁 Пробна консультація</h3>
+                <div style="font-size: 3rem; font-weight: bold; margin-bottom: 1rem;">БЕЗКОШТОВНО</div>
+                <p style="font-size: 1.1rem; opacity: 0.9;">Перше знайомство та оцінка ситуації (30 хвилин)</p>
+            </div>
+            <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 20px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2);">
+                <h3 style="font-size: 2rem; margin-bottom: 1rem;">💎 Стандартна сесія</h3>
+                <div style="font-size: 3rem; font-weight: bold; margin-bottom: 1rem;">450 ₴</div>
+                <p style="font-size: 1.1rem; opacity: 0.9;">Повноцінна консультація (60 хвилин)</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section platforms">
+        <h2>Платформи для Консультацій</h2>
+        <p style="text-align: center; font-size: 1.2rem; margin-bottom: 2rem;">Оберіть зручну для вас платформу для проведення онлайн сесії</p>
+        <div class="platform-grid">
+            <div class="platform-card">
+                <h3>📹 Zoom</h3>
+                <p>Високоякісний відеозв'язок з можливістю запису сесій</p>
+            </div>
+            <div class="platform-card">
+                <h3>🎥 Google Meet</h3>
+                <p>Просте підключення через Google аккаунт</p>
+            </div>
+            <div class="platform-card">
+                <h3>💬 Viber</h3>
+                <p>Відео дзвінки та чат для швидкого зв'язку</p>
+            </div>
+            <div class="platform-card">
+                <h3>📞 Телефон</h3>
+                <p>Аудіо консультації для тих, хто не може використовувати відео</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section contact" id="contact">
+        <h2>Записатися на Консультацію</h2>
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+            <div class="form-group">
+                <label for="name">Ваше ім'я *</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Телефон *</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email">
+            </div>
+            <div class="form-group">
+                <label for="service">Тип консультації *</label>
+                <select id="service" name="service" required style="width: 100%; padding: 1rem; border: none; border-radius: 10px; font-size: 1rem; background: rgba(255,255,255,0.9);">
+                    <option value="">Оберіть послугу</option>
+                    <option value="child">Дитяча психологія</option>
+                    <option value="parent">Підтримка батьків</option>
+                    <option value="emotional">Емоційна регуляція</option>
+                    <option value="development">Розвиток дитини</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="platform">Бажана платформа *</label>
+                <select id="platform" name="platform" required style="width: 100%; padding: 1rem; border: none; border-radius: 10px; font-size: 1rem; background: rgba(255,255,255,0.9);">
+                    <option value="">Оберіть платформу</option>
+                    <option value="zoom">Zoom</option>
+                    <option value="meet">Google Meet</option>
+                    <option value="viber">Viber</option>
+                    <option value="phone">Телефон</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="message">Коротко опишіть вашу ситуацію</label>
+                <textarea id="message" name="message" placeholder="Це допоможе мені краще підготуватися до нашої зустрічі..."></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Надіслати заявку</button>
+        </form>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2025 Ольга - Онлайн Психолог. Конфіденційність та професійність гарантовані.</p>
+        <p>📧 olgapsycholog12@gmail.com</p>
+    </footer>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            // Тут ви можете додати код для відправки даних на сервер
+            // або інтеграцію з сервісами типу Formspree, Netlify Forms тощо
+            
+            alert('Дякую за заявку! Я зв\'яжуся з вами найближчим часом для узгодження часу консультації.');
+            
+            // Очистити форму
+            event.target.reset();
+        }
+
+        // Плавна прокрутка до секцій
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Анімація появи елементів при прокрутці
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Спостерігаємо за картками послуг
+        document.querySelectorAll('.service-card, .platform-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
